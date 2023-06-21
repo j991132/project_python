@@ -57,11 +57,26 @@ daily.click()
 time.sleep(3)
 
 #복무추가 클릭
-bokmuadd = driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div[2]/div/div/div[4]/div[10]/a/div')
+bokmuadd = driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div[2]/div/div/div[4]/div[8]/div[2]/div')
 bokmuadd.click()
 time.sleep(3)
 
 
 #복무자 명
-bo_name = driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/section/form/div[2]/div[1]/div/input')
+bo_name = driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/sidebar/div[2]/section/form/div[2]/div[1]/div/input')
+bo_name.clear()
 bo_name.send_keys("이름")
+time.sleep(1)
+
+#복무 입력
+bo_text = driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/sidebar/div[2]/section/form/div[2]/div[2]/div/input')
+bo_text.send_keys("출장")
+time.sleep(3)
+
+#제출버튼 클릭
+submit = driver.find_element(By.ID, "btn_submit")
+submit.click()
+time.sleep(1)
+
+#브라우저 닫기
+driver.close()
