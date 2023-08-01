@@ -4,12 +4,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import pyperclip
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.alert import Alert
 import subprocess
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
+import pandas as pd
 
-
-subprocess.Popen(r'C:\Program Files\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222 --user-data-dir="C:\chromeCookie"')
+try:
+ subprocess.Popen(r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222 --user-data-dir="C:\chromeCookie"')
+except FileNotFoundError:
+ subprocess.Popen(r'C:\Program Files\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222 --user-data-dir="C:\chromeCookie"')
 url = "https://goteacher.xyz"
 
 
@@ -51,6 +55,10 @@ log_ENT = driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div/div/f
 log_ENT.click()
 time.sleep(3)
 
+#크롬 비밀번호 변경 경고창 없애기 엔터 2회
+driver.send_keys(Keys.ENTER)
+time.sleep(2)
+
 #일간 클릭
 daily = driver.find_element(By.XPATH, '/html/body/div[2]/div[3]/div[1]/div/a[4]')
 daily.click()
@@ -77,6 +85,10 @@ time.sleep(3)
 submit = driver.find_element(By.ID, "btn_submit")
 submit.click()
 time.sleep(1)
+
+#엑셀파일 읽기
+df = pd.read_excel('부서일일근무상황목록.xlsx')
+print(df)
 
 #브라우저 닫기
 driver.close()
