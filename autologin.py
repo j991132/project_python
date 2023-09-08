@@ -56,9 +56,12 @@ log_ENT.click()
 time.sleep(3)
 
 #크롬 비밀번호 변경 경고창 없애기 엔터 2회
-driver.send_keys(Keys.ENTER)
+tabs=driver.window_handles
+while len(tabs) != 1:
+    driver.switch_to_window(tabs[1])
+    driver.close()
+driver.switch_to_window(tabs[0])  
 time.sleep(2)
-
 #일간 클릭
 daily = driver.find_element(By.XPATH, '/html/body/div[2]/div[3]/div[1]/div/a[4]')
 daily.click()
