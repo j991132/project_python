@@ -90,5 +90,6 @@ time.sleep(1)
 df = pd.read_excel('부서일일근무상황목록.xlsx')
 print(df)
 
-#브라우저 닫기1
+
+#브라우저 닫기
 driver.close()
